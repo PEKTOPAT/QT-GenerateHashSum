@@ -1,24 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>GenerateHash</class>
- <widget class="QMainWindow" name="GenerateHash" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="GenerateHash">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>530</width>
+    <height>353</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>GenerateHash</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>8</y>
+      <width>485</width>
+      <height>282</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="lblDirectory">
+         <property name="text">
+          <string>Директория:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="PathFile">
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushchooseFile">
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="lblModeHash">
+         <property name="text">
+          <string>Метод хеширования:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>SHA1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MD4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MD5</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>198</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushgenerate">
+         <property name="text">
+          <string>Генерировать</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="lbllresult">
+         <property name="text">
+          <string>Результат:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>418</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPlainTextEdit" name="txteditresult"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>530</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
