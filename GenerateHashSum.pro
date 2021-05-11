@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2021-05-11T09:30:50
+# Project created by QtCreator 2021-05-11T13:03:49
 #
 #-------------------------------------------------
 
@@ -13,8 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        generatehash.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += generatehash.h
 
-FORMS    += mainwindow.ui
+FORMS    += generatehash.ui
