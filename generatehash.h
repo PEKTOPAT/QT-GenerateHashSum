@@ -19,17 +19,23 @@ public:
     explicit GenerateHash(QWidget *parent = 0);
     ~GenerateHash();
 
-    QByteArray myhashFunction(QString pathFile);
-    void myhashWriteInfo(QString nameFile, QString hashFile);
+    QString myGenerateHash(QString pathFileHashing);
+
 
 private slots:
 
-    void on_pushchooseFile_clicked();
-    void on_pushgenerate_clicked();
+ void on_pushchooseFileForHash_clicked();
+ void on_pushgenerate_clicked();
+ void on_pushchooseFileForWriten_clicked();
+ void on_pushWriten_clicked();
 
 private:
     Ui::GenerateHash *ui;
-    QString pathFile, nameFile;
+    void myWriteHash(QString nameFileHashing, QString hashFile, QString pathFileForWrite);
+    void myResult(bool type);
+
+    QString pathFileHashing, nameFileHashing;
+    QString pathFileForWrite;
     QCryptographicHash::Algorithm Algorythm;
     QByteArray hashFile;
 };

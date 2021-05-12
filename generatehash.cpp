@@ -14,21 +14,20 @@ GenerateHash::~GenerateHash()
     delete ui;
 }
 //******************************************************************************
-QByteArray GenerateHash::myhashFunction(QString pathFile)
+QString GenerateHash::myGenerateHash(QString pathFileHashing)
 {
-    if (QFile::exists(pathFile))
+    if (QFile::exists(pathFileHashing))
     {
-        QFile fileData(pathFile);
+        QFile fileData(pathFileHashing);
         QFileInfo fileInfo(fileData.fileName());
-        nameFile = fileInfo.fileName();
+        nameFileHashing = fileInfo.fileName();
         if(fileData.open(QIODevice::ReadOnly))
         {
             QCryptographicHash objHashByte(Algorythm);
             if(objHashByte.addData(&fileData))
             {
-                QString objHashString = (objHashByte.result()).toHex();
-                ui->txteditresult->setPlainText(objHashString);
-                hashFile = objHashByte.result();
+                hashFile = (objHashByte.result()).toHex();
+                ui->txteditresult->setPlainText(hashFile);
                 return hashFile;
             }
         }
@@ -37,26 +36,69 @@ QByteArray GenerateHash::myhashFunction(QString pathFile)
 
 }
 //******************************************************************************
-void GenerateHash::myhashWriteInfo(QString nameFile, QString hashFile)
+void GenerateHash::myWriteHash(QString nameFileHashing, QString hashFile, QString pathFileForWrite)
 {
-    qDebug() << nameFile << hashFile;
+    qDebug() << nameFileHashing << hashFile << pathFileForWrite;
+        QFile FileForWrite(pathFileForWrite);
+        if (FileForWrite.open(QIODevice::ReadWrite))
+        {
+            QTextStream streamFileForWrite(&FileForWrite);
+            if (streamFileForWrite.readAll() == 0)
+            streamFileForWrite << nameFileHashing << ";" << hashFile;
+            else streamFileForWrite << "\n" << nameFileHashing << ";" << hashFile;
+            FileForWrite.close();
+            myResult(true);
+        }else myResult(false);
 }
 //******************************************************************************
-void GenerateHash::on_pushchooseFile_clicked()
+void GenerateHash::myResult(bool type)
+{
+    if (type)
+    {
+        ui->lblInfo->setText("Успешно!");
+        ui->lblInfo->setStyleSheet("color: rgb(0, 255, 0)");
+    }else
+    {
+        ui->lblInfo->setText("Ошибка!");
+        ui->lblInfo->setStyleSheet("color: rgb(255, 0, 0)");
+    }
+}
+
+//******************************************************************************
+//SLOT**************************************************************************
+//******************************************************************************
+void GenerateHash::on_pushchooseFileForHash_clicked()
 {
     ui->PathFile->setText(QFileDialog::getOpenFileName(this));
 }
 //******************************************************************************
 void GenerateHash::on_pushgenerate_clicked()
 {
-    pathFile = ui->PathFile->text();
-    if (pathFile.size() < 1)
+    pathFileHashing = ui->PathFile->text();
+    if (pathFileHashing.size() < 1)
         return;
     QString curModeHash =  ui->comboBox->currentText();
     if (curModeHash == "SHA1") Algorythm = QCryptographicHash::Sha1;
     else if (curModeHash == "MD4") Algorythm = QCryptographicHash::Md4;
     else if (curModeHash == "MD5") Algorythm = QCryptographicHash::Md5;
-    myhashFunction(pathFile);
-    myhashWriteInfo(nameFile, hashFile);
+    myGenerateHash(pathFileHashing);
+
+}
+//******************************************************************************
+void GenerateHash::on_pushWriten_clicked()
+{
+    pathFileForWrite = ui->PathFileFORwriten->text();
+    if (pathFileHashing.size() == 0 || hashFile.size() == 0 || pathFileForWrite.size() < 1)
+    {
+        myResult(false);
+        return;
+
+    }
+    myWriteHash(nameFileHashing, hashFile, pathFileForWrite);
+}
+//******************************************************************************
+void GenerateHash::on_pushchooseFileForWriten_clicked()
+{
+    ui->PathFileFORwriten->setText(QFileDialog::getOpenFileName(this));
 }
 //******************************************************************************
