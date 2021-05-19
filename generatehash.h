@@ -7,6 +7,10 @@
 #include <QCryptographicHash>
 #include <QDebug>
 //******************************************************************************
+#define DEFINE_MD4 0
+#define DEFINE_MD5 1
+#define DEFINE_SHA1 2
+//******************************************************************************
 namespace Ui {
 class GenerateHash;
 }
@@ -37,6 +41,7 @@ private:
     QString pathFileHashing, nameFileHashing;
     QString pathFileForWrite;
     QCryptographicHash::Algorithm Algorythm;
+    QString CryptoAlgorythm;
     QByteArray hashFile;
 };
 

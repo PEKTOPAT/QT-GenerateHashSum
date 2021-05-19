@@ -28,6 +28,7 @@ QString GenerateHash::myGenerateHash(QString pathFileHashing)
             {
                 hashFile = (objHashByte.result()).toHex();
                 ui->txteditresult->setPlainText(hashFile);
+                ui->lblInfo->setText("");
                 return hashFile;
             }
         }
@@ -40,13 +41,19 @@ void GenerateHash::myWriteHash(QString nameFileHashing, QString hashFile, QStrin
 {
     qDebug() << nameFileHashing << hashFile << pathFileForWrite;
         QFile FileForWrite(pathFileForWrite);
+        QFileInfo fileinfo(pathFileForWrite);
+        QString newPathFileForWrite = fileinfo.path() + "/" + fileinfo.completeBaseName() + ".conf";
+        QFile::rename(pathFileForWrite, newPathFileForWrite);
+        qDebug() << pathFileForWrite;
         if (FileForWrite.open(QIODevice::ReadWrite))
         {
             QTextStream streamFileForWrite(&FileForWrite);
             if (streamFileForWrite.readAll() == 0)
-            streamFileForWrite << nameFileHashing << ";" << hashFile;
-            else streamFileForWrite << "\n" << nameFileHashing << ";" << hashFile;
+            streamFileForWrite << nameFileHashing << ";" << CryptoAlgorythm << ";" << hashFile;
+            else streamFileForWrite << "\n" << nameFileHashing << ";" << CryptoAlgorythm << ";"  << hashFile;
             FileForWrite.close();
+
+//            QFile::rename(pathFileForWrite, )
             myResult(true);
         }else myResult(false);
 }
@@ -78,9 +85,9 @@ void GenerateHash::on_pushgenerate_clicked()
     if (pathFileHashing.size() < 1)
         return;
     QString curModeHash =  ui->comboBox->currentText();
-    if (curModeHash == "SHA1") Algorythm = QCryptographicHash::Sha1;
-    else if (curModeHash == "MD4") Algorythm = QCryptographicHash::Md4;
-    else if (curModeHash == "MD5") Algorythm = QCryptographicHash::Md5;
+    if (curModeHash == "SHA1") {Algorythm = QCryptographicHash::Sha1; CryptoAlgorythm = "Sha1";}
+    else if (curModeHash == "MD4") {Algorythm = QCryptographicHash::Md4; CryptoAlgorythm = "Md4";}
+    else if (curModeHash == "MD5") {Algorythm = QCryptographicHash::Md5; CryptoAlgorythm = "Md5";}
     myGenerateHash(pathFileHashing);
 
 }
