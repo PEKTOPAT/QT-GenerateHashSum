@@ -13,7 +13,9 @@ GenerateHash::~GenerateHash()
 {
     delete ui;
 }
-//******************************************************************************
+//*************************************************************************************************
+//Хеширование**********************************************************
+//*************************************************************************************************
 QString GenerateHash::myGenerateHash(QString pathFileHashing)
 {
     if (QFile::exists(pathFileHashing))
@@ -36,7 +38,9 @@ QString GenerateHash::myGenerateHash(QString pathFileHashing)
     }else return 0;
 
 }
-//******************************************************************************
+//*************************************************************************************************
+//Запись в файл (имя - метод хеширования - хеш) ***************************************************
+//*************************************************************************************************
 void GenerateHash::myWriteHash(QString nameFileHashing, QString hashFile, QString pathFileForWrite)
 {
     qDebug() << nameFileHashing << hashFile << pathFileForWrite;
@@ -49,14 +53,16 @@ void GenerateHash::myWriteHash(QString nameFileHashing, QString hashFile, QStrin
         {
             QTextStream streamFileForWrite(&FileForWrite);
             if (streamFileForWrite.readAll() == 0)
-            streamFileForWrite << nameFileHashing << ";" << CryptoAlgorythm << ";" << hashFile;
-            else streamFileForWrite << "\n" << nameFileHashing << ";" << CryptoAlgorythm << ";"  << hashFile;
+            streamFileForWrite << pathFileHashing << ";" << nameFileHashing << ";" << CryptoAlgorythm << ";" << hashFile;
+            else streamFileForWrite << "\n" << pathFileHashing << ";" << nameFileHashing << ";" << CryptoAlgorythm << ";"  << hashFile;
             FileForWrite.close();
 
 //            QFile::rename(pathFileForWrite, )
             myResult(true);
         }else myResult(false);
 }
+//******************************************************************************
+//Вывод информации результата записи на ui *************************************
 //******************************************************************************
 void GenerateHash::myResult(bool type)
 {
@@ -71,14 +77,16 @@ void GenerateHash::myResult(bool type)
     }
 }
 
-//******************************************************************************
-//SLOT**************************************************************************
-//******************************************************************************
+//*******\/**
+//SLOT***||**
+//*******\/**
+
+//Выбор файла для хеширования, заполнение TextEdit *****************************
 void GenerateHash::on_pushchooseFileForHash_clicked()
 {
     ui->PathFile->setText(QFileDialog::getOpenFileName(this));
 }
-//******************************************************************************
+//Хеширование согласно установленному алгоритму ********************************
 void GenerateHash::on_pushgenerate_clicked()
 {
     pathFileHashing = ui->PathFile->text();
@@ -91,7 +99,12 @@ void GenerateHash::on_pushgenerate_clicked()
     myGenerateHash(pathFileHashing);
 
 }
-//******************************************************************************
+//Выбор файла для записи хеша, заполнение TextEdit *****************************
+void GenerateHash::on_pushchooseFileForWriten_clicked()
+{
+    ui->PathFileFORwriten->setText(QFileDialog::getOpenFileName(this));
+}
+//Запись данных хеша и информации о файле в файл *******************************
 void GenerateHash::on_pushWriten_clicked()
 {
     pathFileForWrite = ui->PathFileFORwriten->text();
@@ -103,9 +116,3 @@ void GenerateHash::on_pushWriten_clicked()
     }
     myWriteHash(nameFileHashing, hashFile, pathFileForWrite);
 }
-//******************************************************************************
-void GenerateHash::on_pushchooseFileForWriten_clicked()
-{
-    ui->PathFileFORwriten->setText(QFileDialog::getOpenFileName(this));
-}
-//******************************************************************************

@@ -1,2 +1,6 @@
-ui_dialog_controllabelsmap.h;Sha1;01973a718bef4b1c05c397c7dbcd75af14b649d9
-ui_dialog_vectorsforline.h;Sha1;06d348554c18bebbf935271be71c9dc346a7bafc
+Makefile;Sha1;a5d8bd0f1a9696e2410f5859a807ffb6f6d26f4e
+C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
+C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
+C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
+C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
+C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Md4;1906a9ed5b66a875f7726567ad7fdd25

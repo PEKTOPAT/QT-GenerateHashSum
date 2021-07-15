@@ -39,10 +39,11 @@ private:
     void myResult(bool type);
 
     QString pathFileHashing, nameFileHashing;
+    QByteArray hashFile;
     QString pathFileForWrite;
     QCryptographicHash::Algorithm Algorythm;
     QString CryptoAlgorythm;
-    QByteArray hashFile;
+
 };
 
 #endif // GENERATEHASH_H
