@@ -1,6 +1,2 @@
-Makefile;Sha1;a5d8bd0f1a9696e2410f5859a807ffb6f6d26f4e
-C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
-C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
-C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
-C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Sha1;a8779ca316d3b0d595a25613892292f346008266
-C:/Qt/GenerateHashSum/GenerateHashSum.pro;GenerateHashSum.pro;Md4;1906a9ed5b66a875f7726567ad7fdd25
+C:/Qt/GenerateHashSum/generatehash.ui;generatehash.ui;Sha1;f8a69ce70942ec58ca1a044b5eaaa0f06296eba8
+C:/Qt/GenerateHashSum/generatehash.ui;generatehash.ui;Sha1;f8a69ce70942ec58ca1a044b5eaaa0f06296eba8
